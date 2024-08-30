@@ -13,12 +13,13 @@ ScriptsOnlyBuild:
     - Runner.MainMenuUI.MainMenuUIScript
     - Runner.PlayerCharacter.Player
     - Runner.RegisterUI.RegisterUIScript
-    - Runner.ResetLevel.ResetLevelManager
     - Runner.Score.ScoreElement
     - Runner.SpawnBarrier.SpawnBarrierManager
     - Runner.SpawnLines.ReSpawnLines
     DOTween.dll:
     - DG.Tweening.Core.DOTweenSettings
+    GoogleMobileAds.Common.dll:
+    - GoogleMobileAds.Common.MobileAdsEventExecutor
     GoogleMobileAds.Editor:
     - GoogleMobileAds.Editor.GoogleMobileAdsSettings
     Unity.InputSystem.dll:
@@ -45,8 +46,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -140,26 +143,17 @@ ScriptsOnlyBuild:
     fullTypeName: LoginUI.LoginUIScript
     methodName: HideCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: Runner.ResetLevel.ResetLevelManager
-    methodName: RestoreObjects
+    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
+    methodName: SetPlayerToRun
   - assembly: Assembly-CSharp
     fullTypeName: Runner.PlayerCharacter.Player
     methodName: RestartToRunn
   - assembly: Assembly-CSharp
-    fullTypeName: Runner.DeathBoard.DeathBoardUIScript
-    methodName: HideCanvas
-  - assembly: Assembly-CSharp
-    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
-    methodName: ShowCanvas
-  - assembly: Assembly-CSharp
-    fullTypeName: Runner.ResetLevel.ResetLevelManager
-    methodName: RestoreObjects
+    fullTypeName: Runner.PlayerCharacter.Player
+    methodName: UnSetPlayerToRun
   - assembly: Assembly-CSharp
     fullTypeName: Runner.PlayerCharacter.Player
     methodName: RestartToMainMenu
-  - assembly: Assembly-CSharp
-    fullTypeName: Runner.DeathBoard.DeathBoardUIScript
-    methodName: HideCanvas
   - assembly: Assembly-CSharp
     fullTypeName: Runner.AdLoadingUI.AdLoadingUIScript
     methodName: ShowCanvas
@@ -284,8 +278,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20468}
     - Class: 114
-      Script: {instanceID: 20480}
-    - Class: 114
       Script: {instanceID: 20488}
     - Class: 114
       Script: {instanceID: 20542}
@@ -294,23 +286,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 20694}
     - Class: 114
-      Script: {instanceID: 21488}
+      Script: {instanceID: 21490}
     - Class: 114
-      Script: {instanceID: 21652}
+      Script: {instanceID: 21654}
     - Class: 114
-      Script: {instanceID: 22008}
+      Script: {instanceID: 22010}
     - Class: 114
-      Script: {instanceID: 22274}
+      Script: {instanceID: 22276}
     - Class: 114
-      Script: {instanceID: 22338}
+      Script: {instanceID: 22340}
     - Class: 114
-      Script: {instanceID: 22524}
+      Script: {instanceID: 22526}
     - Class: 114
-      Script: {instanceID: 23044}
+      Script: {instanceID: 23046}
     - Class: 114
-      Script: {instanceID: 23066}
+      Script: {instanceID: 23068}
     - Class: 114
-      Script: {instanceID: 23586}
+      Script: {instanceID: 23588}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128

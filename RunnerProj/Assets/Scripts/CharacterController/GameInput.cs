@@ -96,7 +96,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Mobile"",
                     ""id"": ""ab7ec08d-e016-4d51-a2b9-e1a0cfd388c6"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

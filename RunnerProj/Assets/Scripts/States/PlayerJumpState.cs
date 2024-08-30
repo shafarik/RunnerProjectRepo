@@ -4,31 +4,38 @@ using UnityEngine;
 using Runner.PlayerCharacter;
 using Runner.StateMachine;
 using Runner.CharacterState;
-public class PlayerJumpState : PlayerState
+using Runner.CharacterMovingState;
+
+namespace Runner.JumpState
 {
 
-    public PlayerJumpState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public class PlayerJumpState : MovingState
     {
-       
-    }
 
-    public override void Enter()
-    {
-        base.Enter();
+        public PlayerJumpState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+        {
 
-        _player.ChangeCollisionToJump();
-    }
+        }
 
-    public override void Exit()
-    {
-        base.Exit();
+        public override void Enter()
+        {
+            base.Enter();
 
-        _player.ResetCollision();
-    }
+            _player.ChangeCollisionToJump();
+        }
 
-    public override void Update()
-    {
-        base.Update();
+        public override void Exit()
+        {
+            base.Exit();
+
+            _player.ResetCollision();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+        }
+
     }
 
 }

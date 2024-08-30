@@ -1,4 +1,5 @@
 using Runner.BasecUI;
+using Runner.PlayerCharacter;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -9,6 +10,21 @@ namespace Runner.MainMenuUI
 
     public class MainMenuUIScript : BasicUIScript
     {
+
+        public static bool _needPlayerToRun = false;
+
+        private void Start()
+        {
+            Debug.Log("Start");
+            if (_needPlayerToRun)
+            {
+                Debug.Log("Player to run true");
+                _needPlayerToRun = false;
+
+                HideCanvas();
+            }
+        }
+
         public override void HideCanvas()
         {
             base.HideCanvas();
@@ -17,6 +33,11 @@ namespace Runner.MainMenuUI
         public override void ShowCanvas()
         {
             base.ShowCanvas();
+        }
+
+        public void SetPlayerToRun()
+        {
+            _needPlayerToRun = true;
         }
 
         public void QuitApplication()

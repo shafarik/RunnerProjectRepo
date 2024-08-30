@@ -391,6 +391,7 @@
 "Assets/Scripts/SpawnManagers/ResetLevelManager.cs"
 "Assets/Scripts/SpawnManagers/ReSpawnLines.cs"
 "Assets/Scripts/SpawnManagers/SpawnBarrierManager.cs"
+"Assets/Scripts/States/MovingState.cs"
 "Assets/Scripts/States/PlayerDeathState.cs"
 "Assets/Scripts/States/PlayerIdleState.cs"
 "Assets/Scripts/States/PlayerJumpState.cs"

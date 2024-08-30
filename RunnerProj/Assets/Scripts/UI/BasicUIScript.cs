@@ -9,23 +9,23 @@ namespace Runner.BasecUI
     public class BasicUIScript : MonoBehaviour
     {
 
-        private Canvas _canvasUI;
+        //protected Canvas _canvasUI;
         // Start is called before the first frame update
         void Start()
         {
-            _canvasUI = GetComponent<Canvas>();
+            //_canvasUI = GetComponent<Canvas>();
         }
 
         public virtual void HideCanvas()
         {
-            if (_canvasUI != null)
-                _canvasUI.enabled = false;
+            if (GetComponent<Canvas>())
+                GetComponent<Canvas>().enabled = false;
         }
 
         public virtual void ShowCanvas()
         {
-            if (_canvasUI != null)
-                _canvasUI.enabled = true;
+            if (GetComponent<Canvas>())
+                GetComponent<Canvas>().enabled = true;
             // Debug.Log("Canwas is "+_canvasUI.gameObject.name);
 
         }

@@ -23,6 +23,7 @@ namespace Runner.InputController
         private void ReadMovement()
         {
             Vector2 InputDirection = _gameInput.RunnerGameInput.Input.ReadValue<Vector2>();
+            Debug.Log("Direction " + InputDirection);
             Vector3 Direction = new Vector3(InputDirection.x, InputDirection.y, 0f);
 
             _controllable.Move(Direction);

@@ -4,30 +4,36 @@ using UnityEngine;
 using Runner.PlayerCharacter;
 using Runner.CharacterState;
 using Runner.StateMachine;
-public class PlayerRollingState : PlayerState
+using Runner.CharacterMovingState;
+
+namespace Runner.RollingState
 {
-    public PlayerRollingState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public class PlayerRollingState : MovingState
     {
+        public PlayerRollingState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+        {
 
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+
+            _player.ChangeCollisionToSlide();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+
+            _player.ResetCollision();
+
+        }
+
+        public override void Update()
+        {
+            base.Update();
+        }
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-
-        _player.ChangeCollisionToSlide();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        _player.ResetCollision();
-
-    }
-
-    public override void Update()
-    {
-        base.Update();
-    }
 }

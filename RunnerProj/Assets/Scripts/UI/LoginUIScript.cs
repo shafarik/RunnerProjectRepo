@@ -20,12 +20,22 @@ namespace LoginUI
 
         [SerializeField] private FirebaseManager _firebaseManager;
 
+        public static bool _loginedAfterReload = false;
 
+        private void Awake()
+        {
+            if (_loginedAfterReload)
+            {
+                _loginedAfterReload = false;
+
+                HideCanvas();
+            }
+        }
         public override void HideCanvas()
         {
             ClearAllData();
 
-            base.HideCanvas();
+            GetComponent<Canvas>().enabled = false;
         }
 
         private void ClearAllData()
@@ -67,8 +77,15 @@ namespace LoginUI
 
         private void Update()
         {
+            //if (_loginedAfterReload && GetComponent<Canvas>().enabled)
+            //{
+            //    Debug.Log("Canvas is hiden");
+            //    HideCanvas();
+            //}
+
             if (_firebaseManager.IsLogined)
             {
+                _loginedAfterReload = true;
                 _firebaseManager.IsLogined = false;
 
                 Debug.Log("Try to silent login");
@@ -87,6 +104,8 @@ namespace LoginUI
                 });
             }
         }
+
+
 
     }
 

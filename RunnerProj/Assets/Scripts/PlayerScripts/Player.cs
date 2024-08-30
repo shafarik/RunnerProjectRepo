@@ -13,6 +13,11 @@ using Runner.Controllable;
 using Runner.Firebase;
 using Runner.UImanager;
 using Runner.DeathBoard;
+using UnityEngine.SceneManagement;
+using Runner.DeathState;
+using Runner.JumpState;
+using Runner.RunningState;
+using Runner.RollingState;
 
 
 namespace Runner.PlayerCharacter
@@ -20,9 +25,9 @@ namespace Runner.PlayerCharacter
     public class Player : MonoBehaviour, IControllable
     {
         [Header("Movement")]
-        [SerializeField] private float _basicMovementSpeed = 2;
-        [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _movespeedMultiplier = 0.1f;
+        public float _basicMovementSpeed = 2;
+        public float _moveSpeed;
+        public float _movespeedMultiplier = 0.1f;
         [SerializeField] private float _lineRotationTime = 0.5f;
 
         [Space]
@@ -46,6 +51,8 @@ namespace Runner.PlayerCharacter
         private Vector2 _touchStartPosition;
         private float _swipeThreshold = 50.0f;
         private bool _isTouching = false;
+
+        public static bool _needPlayerToRun = false;
 
 
         #region States
@@ -71,193 +78,30 @@ namespace Runner.PlayerCharacter
             RollingState = new PlayerRollingState(this, StateMachine, "Roll");
             JumpState = new PlayerJumpState(this, StateMachine, "Jump");
             DeathState = new PlayerDeathState(this, StateMachine, "Death");
+
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            StateMachine.Initiaize(IdleState);
+            Debug.Log("Bool is " + _needPlayerToRun);
+
+            if (_needPlayerToRun)
+            {
+                StateMachine.Initiaize(RunningState);
+            }
+            else
+            {
+                StateMachine.Initiaize(IdleState);
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-            StateMachine.CurrentState.Update();
-
-
-            //#if UNITY_STANDALONE || UNITY_EDITOR
-            //        // Обработка ввода с клавиатуры для ПК
-            //        HandleKeyboardInput();
-            //        HandleMouseInput();
-            //#endif
-
-            //#if UNITY_IOS || UNITY_ANDROID
-            //        // Обработка тач ввода для мобильных устройств
-            //        HandleTouchInput();
-            //#endif
+            
         }
 
-        //private void HandleKeyboardInput()
-        //{
-        //    if (Input.GetKeyDown(KeyCode.D) && StateMachine.CurrentState != IdleState && StateMachine.CurrentState != DeathState)
-        //    {
-        //        if (_currentLineNum >= _lineNumArray.Length - 1) return;
-        //        _currentLineNum++;
-        //        this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, 1.0f);
-        //    }
-
-        //    if (Input.GetKeyDown(KeyCode.A) && StateMachine.CurrentState != IdleState && StateMachine.CurrentState != DeathState)
-        //    {
-        //        if (_currentLineNum <= 0) return;
-        //        _currentLineNum--;
-        //        this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, 1.0f);
-        //    }
-        //    if (Input.GetKeyDown(KeyCode.S) && StateMachine.CurrentState != IdleState && StateMachine.CurrentState != DeathState)
-        //    {
-        //       // ChangeCollision(_slideCollision);
-        //        StateMachine.ChangeState(RollingState);
-        //    }
-        //    //if (Input.GetKeyDown(KeyCode.W))
-        //    //{
-        //    //    UIManager.instance.ClearScreen();
-        //    //    StateMachine.ChangeState(RunningState);
-
-        //    //}
-        //    if (Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.W) && StateMachine.CurrentState != IdleState && StateMachine.CurrentState != DeathState)
-        //    {
-        //        //ChangeCollision(_jumpCollision);
-        //        StateMachine.ChangeState(JumpState);
-        //    }
-        //}
-
-        //private void HandleTouchInput()
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _touchStartPosition = Input.mousePosition;
-        //        _isTouching = true;
-        //    }
-
-        //    if (Input.GetMouseButtonUp(0) && _isTouching && StateMachine.CurrentState == RunningState)
-        //    {
-        //        _isTouching = false;
-        //        Vector2 touchEndPosition = Input.mousePosition;
-        //        Vector2 swipeDelta = touchEndPosition - _touchStartPosition;
-
-        //        if (swipeDelta.magnitude > _swipeThreshold)
-        //        {
-        //            if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
-        //            {
-        //                // Горизонтальный свайп
-        //                if (swipeDelta.x > 0)
-        //                {
-        //                    // Свайп вправо
-        //                    if (_currentLineNum >= _lineNumArray.Length - 1) return;
-        //                    _currentLineNum++;
-        //                    this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, _lineRotationTime);
-        //                }
-        //                else
-        //                {
-        //                    // Свайп влево
-        //                    if (_currentLineNum <= 0) return;
-        //                    _currentLineNum--;
-        //                    this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, _lineRotationTime);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                // Вертикальный свайп
-        //                if (swipeDelta.y > 0)
-        //                {
-        //                    // Свайп вверх
-        //                    if (StateMachine.CurrentState != IdleState)
-        //                    {
-        //                        ChangeCollision(_jumpCollision);
-        //                        StateMachine.ChangeState(JumpState);
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    // Свайп вниз
-        //                    if (StateMachine.CurrentState != IdleState)
-        //                    {
-        //                        ChangeCollision(_slideCollision);
-        //                        StateMachine.ChangeState(RollingState);
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void HandleMouseInput()
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _touchStartPosition = Input.mousePosition;
-        //        _isTouching = true;
-        //    }
-
-        //    if (Input.GetMouseButtonUp(0) && _isTouching && StateMachine.CurrentState == RunningState)
-        //    {
-        //        _isTouching = false;
-        //        Vector2 touchEndPosition = Input.mousePosition;
-        //        Vector2 swipeDelta = touchEndPosition - _touchStartPosition;
-
-        //        if (swipeDelta.magnitude > _swipeThreshold)
-        //        {
-        //            if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
-        //            {
-        //                // Горизонтальный свайп
-        //                if (swipeDelta.x > 0)
-        //                {
-        //                    // Свайп вправо
-        //                    if (_currentLineNum >= _lineNumArray.Length - 1) return;
-        //                    _currentLineNum++;
-        //                    this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, 1.0f);
-        //                }
-        //                else
-        //                {
-        //                    // Свайп влево
-        //                    if (_currentLineNum <= 0) return;
-        //                    _currentLineNum--;
-        //                    this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, 1.0f);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                // Вертикальный свайп
-        //                if (swipeDelta.y > 0)
-        //                {
-        //                    // Свайп вверх
-        //                    if (StateMachine.CurrentState != IdleState)
-        //                    {
-        //                        ChangeCollision(_jumpCollision);
-        //                        StateMachine.ChangeState(JumpState);
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    // Свайп вниз
-        //                    if (StateMachine.CurrentState != IdleState)
-        //                    {
-        //                        ChangeCollision(_slideCollision);
-        //                        StateMachine.ChangeState(RollingState);
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            // Обработка тапа
-        //            if (StateMachine.CurrentState != IdleState)
-        //            {
-        //                UIManager.instance.ClearScreen();
-        //                StateMachine.ChangeState(RunningState);
-        //            }
-        //        }
-        //    }
-        //}
 
         public void StartRunning()
         {
@@ -266,7 +110,7 @@ namespace Runner.PlayerCharacter
         private void FixedUpdate()
         {
             MoveForward();
-
+            StateMachine.CurrentState.Update();
 
             if (ScoreField.text != "")
             {
@@ -290,13 +134,13 @@ namespace Runner.PlayerCharacter
 
         public void Move(Vector3 direction)
         {
-            if (StateMachine.CurrentState == IdleState && StateMachine.CurrentState == DeathState) return;
+            if (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == DeathState) return;
 
-            Debug.Log(" direction " + direction);
+            //  Debug.Log(" direction " + direction);
 
             if (Math.Round(this.transform.position.z, 1) == Math.Round(_lineNumArray[_currentLineNum].transform.position.z, 1))
             {
-                Debug.Log("Inputing");
+                //Debug.Log("Inputing");
                 if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
                 {
                     // Горизонтальный свайп
@@ -338,8 +182,8 @@ namespace Runner.PlayerCharacter
                     }
                 }
             }
-            else
-                Debug.Log("NotEqual " + Math.Round(this.transform.position.z, 1) + " != " + Math.Round(_lineNumArray[_currentLineNum].transform.position.z, 1));
+            // else
+            //  Debug.Log("NotEqual " + Math.Round(this.transform.position.z, 1) + " != " + Math.Round(_lineNumArray[_currentLineNum].transform.position.z, 1));
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -358,12 +202,19 @@ namespace Runner.PlayerCharacter
 
         public void RestartToMainMenu()
         {
-            StateMachine.ChangeState(IdleState);
+            Scene currentScene = SceneManager.GetActiveScene();
+
+            UnSetPlayerToRun();
+
+            SceneManager.LoadScene(currentScene.name);
         }
         public void RestartToRunn()
         {
-            //   StateMachine.ChangeState(IdleState);
-            StateMachine.ChangeState(RunningState);
+            Scene currentScene = SceneManager.GetActiveScene();
+
+            SetPlayerToRun();
+
+            SceneManager.LoadScene(currentScene.name);
         }
 
         public void ChangeCollision(CapsuleCollider _newCollision)
@@ -400,7 +251,15 @@ namespace Runner.PlayerCharacter
             _isdead = _dead;
         }
 
+        public void SetPlayerToRun()
+        {
+            _needPlayerToRun = true;
+        }
 
+        public void UnSetPlayerToRun()
+        {
+            _needPlayerToRun = false;
+        }
 
 
     }
