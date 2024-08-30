@@ -1,26 +1,33 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - AdModAdsScript
-    - AnimationController
-    - BarrierDespawn
-    - FirebaseManager
-    - Player
-    - ReSpawnLines
-    - ResetLevelManager
-    - ScoreElement
-    - SpawnBarrierManager
-    - UIManager
+    - LoginUI.LoginUIScript
+    - Runner.AdLoadingUI.AdLoadingUIScript
+    - Runner.AdMod.AdModAdsScript
+    - Runner.AnimationControl.AnimationController
+    - Runner.BarierDespawnManager.BarrierDespawn
+    - Runner.DeathBoard.DeathBoardUIScript
+    - Runner.Firebase.FirebaseManager
+    - Runner.InputController.CharacterInputController
+    - Runner.LeaderboardUI.LeaderboardUIScript
+    - Runner.MainMenuUI.MainMenuUIScript
+    - Runner.PlayerCharacter.Player
+    - Runner.RegisterUI.RegisterUIScript
+    - Runner.ResetLevel.ResetLevelManager
+    - Runner.Score.ScoreElement
+    - Runner.SpawnBarrier.SpawnBarrierManager
+    - Runner.SpawnLines.ReSpawnLines
     DOTween.dll:
     - DG.Tweening.Core.DOTweenSettings
-    GoogleMobileAds.Common.dll:
-    - GoogleMobileAds.Common.MobileAdsEventExecutor
     GoogleMobileAds.Editor:
     - GoogleMobileAds.Editor.GoogleMobileAdsSettings
     Unity.InputSystem.dll:
+    - UnityEngine.InputSystem.InputActionAsset
+    - UnityEngine.InputSystem.InputActionReference
     - UnityEngine.InputSystem.InputSettings
     - UnityEngine.InputSystem.InputSystemObject
     - UnityEngine.InputSystem.RemoteInputPlayerConnection
+    - UnityEngine.InputSystem.UI.InputSystemUIInputModule
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
@@ -38,10 +45,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -49,7 +54,6 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
-    - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
@@ -63,6 +67,12 @@ ScriptsOnlyBuild:
     DOTween:
     - DG.Tweening.Core.DOTweenSettings/ModulesSetup
     - DG.Tweening.Core.DOTweenSettings/SafeModeOptions
+    Unity.InputSystem:
+    - UnityEngine.InputSystem.InputAction
+    - UnityEngine.InputSystem.InputActionMap
+    - UnityEngine.InputSystem.InputBinding
+    - UnityEngine.InputSystem.InputControlScheme
+    - UnityEngine.InputSystem.InputControlScheme/DeviceRequirement
     Unity.TextMeshPro:
     - TMPro.FaceInfo_Legacy
     - TMPro.FontAssetCreationSettings
@@ -103,62 +113,86 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: Player
+    fullTypeName: Runner.PlayerCharacter.Player
     methodName: StartRunning
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: UserDataScreen
+    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
+    methodName: HideCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: RegisterScreen
+    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
+    methodName: ShowCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: FirebaseManager
-    methodName: LoginButton
+    fullTypeName: Runner.LeaderboardUI.LeaderboardUIScript
+    methodName: HideCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: ClearScreen
+    fullTypeName: Runner.RegisterUI.RegisterUIScript
+    methodName: ShowCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: ResetLevelManager
+    fullTypeName: LoginUI.LoginUIScript
+    methodName: HideCanvas
+  - assembly: Assembly-CSharp
+    fullTypeName: LoginUI.LoginUIScript
+    methodName: Login
+  - assembly: Assembly-CSharp
+    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
+    methodName: ShowCanvas
+  - assembly: Assembly-CSharp
+    fullTypeName: LoginUI.LoginUIScript
+    methodName: HideCanvas
+  - assembly: Assembly-CSharp
+    fullTypeName: Runner.ResetLevel.ResetLevelManager
     methodName: RestoreObjects
   - assembly: Assembly-CSharp
-    fullTypeName: Player
+    fullTypeName: Runner.PlayerCharacter.Player
     methodName: RestartToRunn
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: UserDataScreen
+    fullTypeName: Runner.DeathBoard.DeathBoardUIScript
+    methodName: HideCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: ResetLevelManager
+    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
+    methodName: ShowCanvas
+  - assembly: Assembly-CSharp
+    fullTypeName: Runner.ResetLevel.ResetLevelManager
     methodName: RestoreObjects
   - assembly: Assembly-CSharp
-    fullTypeName: Player
+    fullTypeName: Runner.PlayerCharacter.Player
     methodName: RestartToMainMenu
   - assembly: Assembly-CSharp
-    fullTypeName: AdModAdsScript
+    fullTypeName: Runner.DeathBoard.DeathBoardUIScript
+    methodName: HideCanvas
+  - assembly: Assembly-CSharp
+    fullTypeName: Runner.AdLoadingUI.AdLoadingUIScript
+    methodName: ShowCanvas
+  - assembly: Assembly-CSharp
+    fullTypeName: Runner.AdMod.AdModAdsScript
     methodName: LoadRewardedAd
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: AdLoadScreen
+    fullTypeName: Runner.DeathBoard.DeathBoardUIScript
+    methodName: HideCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: FirebaseManager
-    methodName: SignOutButton
+    fullTypeName: Runner.Firebase.FirebaseManager
+    methodName: LogOutButton
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: LoginScreen
+    fullTypeName: LoginUI.LoginUIScript
+    methodName: ShowCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
+    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
     methodName: QuitApplication
   - assembly: Assembly-CSharp
-    fullTypeName: FirebaseManager
+    fullTypeName: Runner.RegisterUI.RegisterUIScript
     methodName: RegisterButton
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: LoginScreen
+    fullTypeName: Runner.RegisterUI.RegisterUIScript
+    methodName: HideCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: UIManager
-    methodName: ScoreboardScreen
+    fullTypeName: Runner.LeaderboardUI.LeaderboardUIScript
+    methodName: ShowCanvas
   - assembly: Assembly-CSharp
-    fullTypeName: FirebaseManager
+    fullTypeName: Runner.Firebase.FirebaseManager
     methodName: ScoreboardButton
+  - assembly: Assembly-CSharp
+    fullTypeName: Runner.MainMenuUI.MainMenuUIScript
+    methodName: HideCanvas
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
     - Class: 1
@@ -182,6 +216,8 @@ ScriptsOnlyBuild:
     - Class: 49
       Script: {instanceID: 0}
     - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
@@ -208,57 +244,73 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16728}
     - Class: 114
-      Script: {instanceID: 17380}
+      Script: {instanceID: 17382}
     - Class: 114
-      Script: {instanceID: 17866}
+      Script: {instanceID: 17640}
     - Class: 114
-      Script: {instanceID: 18096}
+      Script: {instanceID: 17870}
     - Class: 114
-      Script: {instanceID: 18188}
+      Script: {instanceID: 17888}
     - Class: 114
-      Script: {instanceID: 18432}
+      Script: {instanceID: 18102}
     - Class: 114
-      Script: {instanceID: 18808}
+      Script: {instanceID: 18194}
     - Class: 114
-      Script: {instanceID: 18826}
+      Script: {instanceID: 18438}
     - Class: 114
-      Script: {instanceID: 19310}
+      Script: {instanceID: 18646}
     - Class: 114
-      Script: {instanceID: 19576}
+      Script: {instanceID: 18834}
     - Class: 114
-      Script: {instanceID: 19592}
+      Script: {instanceID: 19152}
     - Class: 114
-      Script: {instanceID: 19864}
+      Script: {instanceID: 19190}
     - Class: 114
-      Script: {instanceID: 19880}
+      Script: {instanceID: 19320}
     - Class: 114
-      Script: {instanceID: 20196}
+      Script: {instanceID: 19346}
     - Class: 114
-      Script: {instanceID: 20454}
+      Script: {instanceID: 19588}
     - Class: 114
-      Script: {instanceID: 20466}
+      Script: {instanceID: 19604}
     - Class: 114
-      Script: {instanceID: 20474}
+      Script: {instanceID: 19876}
     - Class: 114
-      Script: {instanceID: 20586}
+      Script: {instanceID: 19892}
     - Class: 114
-      Script: {instanceID: 20678}
+      Script: {instanceID: 20208}
     - Class: 114
-      Script: {instanceID: 21472}
+      Script: {instanceID: 20356}
     - Class: 114
-      Script: {instanceID: 21840}
+      Script: {instanceID: 20468}
     - Class: 114
-      Script: {instanceID: 21988}
+      Script: {instanceID: 20480}
     - Class: 114
-      Script: {instanceID: 22318}
+      Script: {instanceID: 20488}
     - Class: 114
-      Script: {instanceID: 22504}
+      Script: {instanceID: 20542}
     - Class: 114
-      Script: {instanceID: 23046}
+      Script: {instanceID: 20602}
     - Class: 114
-      Script: {instanceID: 23566}
+      Script: {instanceID: 20694}
     - Class: 114
-      Script: {instanceID: 23918}
+      Script: {instanceID: 21488}
+    - Class: 114
+      Script: {instanceID: 21652}
+    - Class: 114
+      Script: {instanceID: 22008}
+    - Class: 114
+      Script: {instanceID: 22274}
+    - Class: 114
+      Script: {instanceID: 22338}
+    - Class: 114
+      Script: {instanceID: 22524}
+    - Class: 114
+      Script: {instanceID: 23044}
+    - Class: 114
+      Script: {instanceID: 23066}
+    - Class: 114
+      Script: {instanceID: 23586}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -270,6 +322,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 205
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -328,6 +382,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: 207e71583ec3031d99f7a7cbbc93dd15
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.BasecUI
+    className: BasicUIScript
   - hash:
       serializedVersion: 2
       Hash: 157d3cf40178d244cd11ae1c9791ead7
@@ -408,6 +468,12 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: b0b7895273dc7f69e6b9c65884ccb10d
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.AdLoadingUI
+    className: AdLoadingUIScript
+  - hash:
+      serializedVersion: 2
       Hash: 1321993db8249e1e05e1e0492b2bbdc3
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -432,16 +498,22 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 04b6685b6f724c0d6024e6b6f96c8202
-    assemblyName: Unity.Timeline
-    namespaceName: UnityEngine.Timeline
-    className: TimelineAsset
+      Hash: 91a425640a2a1b466c9044b3bbb12004
+    assemblyName: Assembly-CSharp
+    namespaceName: LoginUI
+    className: LoginUIScript
   - hash:
       serializedVersion: 2
       Hash: ada873da50974d1e7ce247ffb296b0f3
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnCollisionEnterMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 04b6685b6f724c0d6024e6b6f96c8202
+    assemblyName: Unity.Timeline
+    namespaceName: UnityEngine.Timeline
+    className: TimelineAsset
   - hash:
       serializedVersion: 2
       Hash: 7e12302f66e3c8ed5bcfea4ce65fccea
@@ -492,9 +564,9 @@ ScriptsOnlyBuild:
     className: UnityOnButtonClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 0738f5fe01b4926068ca3efe9098c28e
+      Hash: 0d8c1382e593678063d4e03f36e30eed
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.Score
     className: ScoreElement
   - hash:
       serializedVersion: 2
@@ -582,6 +654,12 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
+      Hash: 53b2f11fcbe9e9969e5e0d069b49f483
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.DeathBoard
+    className: DeathBoardUIScript
+  - hash:
+      serializedVersion: 2
       Hash: 86344100c716167fb86137c127ca9eee
     assemblyName: Unity.InputSystem
     namespaceName: UnityEngine.InputSystem.Editor
@@ -612,9 +690,9 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 9be924f5b9a09967700a43475897830d
+      Hash: dd7626bc9975eaad54b66b474591e2f7
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.UImanager
     className: UIManager
   - hash:
       serializedVersion: 2
@@ -678,6 +756,12 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
+      Hash: adf46fce8baeca1242b43e8b19a3f742
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.RegisterUI
+    className: RegisterUIScript
+  - hash:
+      serializedVersion: 2
       Hash: 552dca338f20933ce362ebbe559a6aa6
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -700,6 +784,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Mask
+  - hash:
+      serializedVersion: 2
+      Hash: 472156220323ac390e6ee203287f02e9
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.AdMod
+    className: AdModAdsScript
   - hash:
       serializedVersion: 2
       Hash: 164a37e0bc379311785dd54beac44331
@@ -798,9 +888,9 @@ ScriptsOnlyBuild:
     className: OnScreenStick
   - hash:
       serializedVersion: 2
-      Hash: ac0624d67a6eda5c6f1757b13490e4c7
+      Hash: ce7acea75aa78a01415e8cd99a873722
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.Firebase
     className: FirebaseManager
   - hash:
       serializedVersion: 2
@@ -834,9 +924,9 @@ ScriptsOnlyBuild:
     className: UnityOnPointerClickMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 7dffdb2168ab86706966aaed4cb06982
+      Hash: 66a081e52aae14bb3403a3de8f0aadb4
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.SpawnLines
     className: ReSpawnLines
   - hash:
       serializedVersion: 2
@@ -870,6 +960,12 @@ ScriptsOnlyBuild:
     className: RemoteInputPlayerConnection
   - hash:
       serializedVersion: 2
+      Hash: 3efb4d4806a01c21bcf9209b08aa33fe
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.LeaderboardUI
+    className: LeaderboardUIScript
+  - hash:
+      serializedVersion: 2
       Hash: f2098fcd8ee983a05ec192f63904298f
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -900,9 +996,9 @@ ScriptsOnlyBuild:
     className: BaseInputOverride
   - hash:
       serializedVersion: 2
-      Hash: 1a09b19c0d74e969e92f46a4d54ab601
+      Hash: f726a847566426de80d06d7cbf0d68e0
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.ResetLevel
     className: ResetLevelManager
   - hash:
       serializedVersion: 2
@@ -918,6 +1014,12 @@ ScriptsOnlyBuild:
     className: UnityOnTriggerStayMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 8d6ffc7d01c4a5909eaa5d67f94fc574
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.MainMenuUI
+    className: MainMenuUIScript
+  - hash:
+      serializedVersion: 2
       Hash: 10c17b309bdca62b4d7fbaf113ed4ca0
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -930,9 +1032,9 @@ ScriptsOnlyBuild:
     className: GlobalMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 94d7aa7a3b32f4b52bff135e6953331c
+      Hash: 749acf6838d9f3d17a239148d7258f7f
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.SpawnBarrier
     className: SpawnBarrierManager
   - hash:
       serializedVersion: 2
@@ -1032,6 +1134,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 4595f10a5ee4547ad2fd2df02d8c9b2d
+    assemblyName: Assembly-CSharp
+    namespaceName: Runner.InputController
+    className: CharacterInputController
+  - hash:
+      serializedVersion: 2
       Hash: da5a949a0bbd2ff91bc51c5805c2c41f
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1086,9 +1194,9 @@ ScriptsOnlyBuild:
     className: PlayerInputEditor
   - hash:
       serializedVersion: 2
-      Hash: 15cbd455e8e3aa89ba582543bb0acb34
+      Hash: b62f282d1c30b3eef81cd41ac76d928e
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.AnimationControl
     className: AnimationController
   - hash:
       serializedVersion: 2
@@ -1194,9 +1302,9 @@ ScriptsOnlyBuild:
     className: PositionAsUV1
   - hash:
       serializedVersion: 2
-      Hash: fe5eee4771197aedcdcae70eb0e39725
+      Hash: 6952938b4e80e7d9d0eff3e9a471241d
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.BarierDespawnManager
     className: BarrierDespawn
   - hash:
       serializedVersion: 2
@@ -1326,9 +1434,9 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 2dad10505e8632a05328e64d3e77f25e
+      Hash: 031e8dc452c8bbea19e4a45a8406ed56
     assemblyName: Assembly-CSharp
-    namespaceName: 
+    namespaceName: Runner.PlayerCharacter
     className: Player
   - hash:
       serializedVersion: 2
@@ -1372,13 +1480,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 3af76564453b7bf7ac9a8ab8d9b0534f
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: AdModAdsScript
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Project/RunnerProj/Build/RunnerBuild1.apk
+  playerPath: C:/Project/RunnerProjectRepo/RunnerProj/Build/RunnerBuild2.apk

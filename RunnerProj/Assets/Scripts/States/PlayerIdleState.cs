@@ -1,25 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Runner.PlayerCharacter;
+using Runner.CharacterState;
+using Runner.StateMachine;
 
-public class PlayerIdleState : PlayerState
+
+namespace Runner.CharacterState
 {
-    public PlayerIdleState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public class PlayerIdleState : PlayerState
     {
-    }
+        public PlayerIdleState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+        {
+        }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
+        public override void Enter()
+        {
+            base.Enter();
+        }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
+        public override void Exit()
+        {
+            base.Exit();
+        }
 
-    public override void Update()
-    {
-        base.Update();
+        public override void Update()
+        {
+            base.Update();
+        }
     }
 }

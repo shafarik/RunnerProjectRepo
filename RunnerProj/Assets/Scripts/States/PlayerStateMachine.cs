@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Runner.CharacterState;
 
-public class PlayerStateMachine
+
+namespace Runner.StateMachine
 {
-
-    public PlayerState CurrentState { get; private set; }
-
-    public void Initiaize(PlayerState _newState)
+    public class PlayerStateMachine
     {
-        CurrentState = _newState;
-        CurrentState.Enter();
-    }
 
-    public void ChangeState(PlayerState _newState)
-    {
-        CurrentState.Exit();
-        CurrentState = _newState;
-        CurrentState.Enter();
+        public PlayerState CurrentState { get; private set; }
+
+        public void Initiaize(PlayerState _newState)
+        {
+            CurrentState = _newState;
+            CurrentState.Enter();
+        }
+
+        public void ChangeState(PlayerState _newState)
+        {
+            CurrentState.Exit();
+            CurrentState = _newState;
+            CurrentState.Enter();
+        }
     }
 }
