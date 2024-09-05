@@ -46,11 +46,7 @@ namespace Runner.PlayerCharacter
         [SerializeField] public Animator Animator { get; private set; }
         public PlayerStateMachine StateMachine { get; private set; }
 
-
-
-        private Vector2 _touchStartPosition;
-        private float _swipeThreshold = 50.0f;
-        private bool _isTouching = false;
+        public int IsRotationToSameWayLine = 0;
 
         public static bool _needPlayerToRun = false;
 
@@ -99,7 +95,7 @@ namespace Runner.PlayerCharacter
         // Update is called once per frame
         void Update()
         {
-            
+
         }
 
 
@@ -120,6 +116,11 @@ namespace Runner.PlayerCharacter
                 }
 
             }
+
+            if (transform.position.z == _lineNumArray[_currentLineNum].transform.position.z)
+            {
+                IsRotationToSameWayLine = 0;
+            }
         }
 
         private void MoveForward()
@@ -136,54 +137,60 @@ namespace Runner.PlayerCharacter
         {
             if (StateMachine.CurrentState == IdleState || StateMachine.CurrentState == DeathState) return;
 
-            //  Debug.Log(" direction " + direction);
+            //if (Math.Round(this.transform.position.z, 1) == Math.Round(_lineNumArray[_currentLineNum].transform.position.z, 1))
+            //{
 
-            if (Math.Round(this.transform.position.z, 1) == Math.Round(_lineNumArray[_currentLineNum].transform.position.z, 1))
+            if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
             {
-                //Debug.Log("Inputing");
-                if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                if (IsRotationToSameWayLine == 0 || ((direction.x > 10 && IsRotationToSameWayLine < 0) || (direction.x < -10 && IsRotationToSameWayLine > 0)))
                 {
                     // Горизонтальный свайп
                     if (direction.x > 0)
                     {
                         // Свайп вправо
                         if (_currentLineNum >= _lineNumArray.Length - 1) return;
+
                         _currentLineNum++;
+                        IsRotationToSameWayLine = 1;
+
                         this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, _lineRotationTime);
                     }
                     else if (direction.x < 0)
                     {
                         // Свайп влево
                         if (_currentLineNum <= 0) return;
+
                         _currentLineNum--;
+                        IsRotationToSameWayLine = -1;
+
                         this.transform.DOMoveZ(_lineNumArray[_currentLineNum].transform.position.z, _lineRotationTime);
                     }
                 }
-                else
+            }
+            else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
+            {
+                // Вертикальный свайп
+                if (direction.y > 0)
                 {
-                    // Вертикальный свайп
-                    if (direction.y > 0)
+                    // Свайп вверх
+                    if (StateMachine.CurrentState != IdleState)
                     {
-                        // Свайп вверх
-                        if (StateMachine.CurrentState != IdleState)
-                        {
-                            //ChangeCollision(_jumpCollision);
-                            StateMachine.ChangeState(JumpState);
-                        }
+                        //ChangeCollision(_jumpCollision);
+                        StateMachine.ChangeState(JumpState);
                     }
-                    else if (direction.y < 0)
+                }
+                else if (direction.y < 0)
+                {
+                    // Свайп вниз
+                    if (StateMachine.CurrentState != IdleState)
                     {
-                        // Свайп вниз
-                        if (StateMachine.CurrentState != IdleState)
-                        {
-                            //ChangeCollision(_slideCollision);
-                            StateMachine.ChangeState(RollingState);
-                        }
+                        //ChangeCollision(_slideCollision);
+                        StateMachine.ChangeState(RollingState);
                     }
                 }
             }
-            // else
-            //  Debug.Log("NotEqual " + Math.Round(this.transform.position.z, 1) + " != " + Math.Round(_lineNumArray[_currentLineNum].transform.position.z, 1));
+
+            //}
         }
 
         private void OnCollisionEnter(Collision collision)

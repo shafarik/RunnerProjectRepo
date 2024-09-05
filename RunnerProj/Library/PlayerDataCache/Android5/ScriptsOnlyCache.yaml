@@ -23,6 +23,8 @@ ScriptsOnlyBuild:
     GoogleMobileAds.Editor:
     - GoogleMobileAds.Editor.GoogleMobileAdsSettings
     Unity.InputSystem.dll:
+    - UnityEngine.InputSystem.Editor.InputActionAssetEditor
+    - UnityEngine.InputSystem.Editor.InputActionImporterEditor
     - UnityEngine.InputSystem.InputActionAsset
     - UnityEngine.InputSystem.InputActionReference
     - UnityEngine.InputSystem.InputSettings
@@ -46,10 +48,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -1426,7 +1426,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 031e8dc452c8bbea19e4a45a8406ed56
+      Hash: 1fd2f78eaea3eb1b53f5f181b3b1c53d
     assemblyName: Assembly-CSharp
     namespaceName: Runner.PlayerCharacter
     className: Player
@@ -1475,4 +1475,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Project/RunnerProjectRepo/RunnerProj/Build/RunnerBuild2.apk
+  playerPath: C:/Project/RunnerProjectRepo/RunnerProj/Build/RunnerBuild3.apk
