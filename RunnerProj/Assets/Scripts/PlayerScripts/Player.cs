@@ -139,6 +139,8 @@ namespace Runner.PlayerCharacter
 
             //if (Math.Round(this.transform.position.z, 1) == Math.Round(_lineNumArray[_currentLineNum].transform.position.z, 1))
             //{
+            if (direction == Vector3.zero)
+                IsRotationToSameWayLine = 0;
 
             if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
             {
