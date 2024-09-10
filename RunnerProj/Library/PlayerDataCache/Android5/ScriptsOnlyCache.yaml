@@ -1482,4 +1482,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Project/RunnerProjectRepo/RunnerProj/Build/RunnerBuild5.apk
+  playerPath: C:/Project/RunnerProjectRepo/RunnerProj/Build/RunnerBuild6.apk
