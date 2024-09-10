@@ -23,8 +23,6 @@ ScriptsOnlyBuild:
     GoogleMobileAds.Editor:
     - GoogleMobileAds.Editor.GoogleMobileAdsSettings
     Unity.InputSystem.dll:
-    - UnityEngine.InputSystem.Editor.InputActionAssetEditor
-    - UnityEngine.InputSystem.Editor.InputActionImporterEditor
     - UnityEngine.InputSystem.InputActionAsset
     - UnityEngine.InputSystem.InputActionReference
     - UnityEngine.InputSystem.InputSettings
@@ -48,8 +46,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -59,12 +59,14 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
     - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     DOTween:
@@ -113,6 +115,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.ScrollRect/ScrollRectEvent
+    - UnityEngine.UI.Scrollbar/ScrollEvent
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
@@ -252,6 +255,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 18438}
     - Class: 114
+      Script: {instanceID: 18640}
+    - Class: 114
       Script: {instanceID: 18646}
     - Class: 114
       Script: {instanceID: 18834}
@@ -289,6 +294,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 21490}
     - Class: 114
       Script: {instanceID: 21654}
+    - Class: 114
+      Script: {instanceID: 21870}
     - Class: 114
       Script: {instanceID: 22010}
     - Class: 114
@@ -1475,4 +1482,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Project/RunnerProjectRepo/RunnerProj/Build/RunnerBuild3.apk
+  playerPath: C:/Project/RunnerProjectRepo/RunnerProj/Build/RunnerBuild5.apk

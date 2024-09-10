@@ -48,7 +48,7 @@ namespace Runner.LeaderboardUI
 
                     //Instantiate new scoreboard elements
                     GameObject scoreboardElement = Instantiate(scoreElement, scoreboardContent);
-                    scoreboardElement.GetComponent<ScoreElement>().NewScoreElement(username, score);
+                    scoreboardElement.GetComponentInChildren<ScoreElement>().NewScoreElement(username, score);
                 }
 
             });
